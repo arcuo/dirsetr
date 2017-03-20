@@ -1,0 +1,9 @@
+Name: setwd_source
+Description: Sets working directory to active file directory.
+Binding: setwd_source
+Interactive: true
+
+Name: print_setwd_source
+Description: Insert working directory to active file directory code.
+Binding: print_setwd_source
+Interactive: true
