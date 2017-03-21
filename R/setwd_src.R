@@ -4,12 +4,12 @@
 
 ##  .................. #< 75093c5a09d2af4beb84baaee3c1af49 ># ..................
 ##  Get active document path                                                ####
+
 #' Grab active document path as string.
 #' @export
 active_path <- function() {
   return(sub("[^/]*$", "", rstudioapi::getActiveDocumentContext()$path))
 }
-
 
 #   __________________ #< c821a0b3b44d63bf2cc16957c3216e90 ># __________________
 #   Functions                                                               ####
@@ -18,8 +18,14 @@ active_path <- function() {
 #' Setting working directory to active file path.
 #'
 #' @export
+#'
 setwd_source <- function() {
-  setwd(active_path())
+  tryCatch({
+    setwd(active_path())
+    }, error = function(e){
+      stop(simpleError(paste("Active ID: ", rstudioapi::getActiveDocumentContext()$id, sep ="")))
+    }
+    )
 }
 
 ##  .................. #< b4f0b21e4b945a25fb2ff158b82b73ab ># ..................
